@@ -1,5 +1,7 @@
-import 'package:bento_challenge/screens/home/home_screen.dart';
+import 'package:bento_challenge/screens/app_pages.dart';
+import 'package:bento_challenge/screens/product/product_screen.dart';
 import 'package:bento_challenge/screens/splash/splash_screen.dart';
+import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:bento_challenge/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +14,13 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splashScreen,
       onGenerateRoute: _generateRoute,
-      // routes: {
-      //   AppRoutes.splashScreen: (context) => const SplashScreen(),
-      //   AppRoutes.homeScreen: (context) => const HomeScreen(),
-      // },
+      theme: ThemeData.light().copyWith(
+        colorScheme: const ColorScheme.light()
+            .copyWith(surface: AppColors.white, surfaceTint: AppColors.white),
+        menuTheme: MenuThemeData(
+            style: MenuStyle(
+                backgroundColor: WidgetStateProperty.all(AppColors.white))),
+      ),
     );
   }
 
@@ -23,10 +28,16 @@ class App extends StatelessWidget {
     switch (settings.name) {
       case '/':
         return _buildPageRoute(const SplashScreen(), settings);
-      case '/home':
-        return _buildPageRoute(const HomeScreen(), settings);
+      case '/pages':
+        return _buildPageRoute(const AppPages(), settings);
+      case '/product':
+        return _buildPageRoute(
+            ProductScreen(
+                id: (settings.arguments as Map<String, dynamic>)["id"]
+                    as String),
+            settings);
       default:
-        return _buildPageRoute(const HomeScreen(), settings);
+        return _buildPageRoute(const SplashScreen(), settings);
     }
   }
 
@@ -46,15 +57,6 @@ class App extends StatelessWidget {
             child: child,
           ),
         );
-
-        // // Exemplo de transição slide from right
-        // return SlideTransition(
-        //   position: Tween<Offset>(
-        //     begin: const Offset(1.0, 0.0),
-        //     end: Offset.zero,
-        //   ).animate(animation),
-        //   child: child,
-        // );
       },
     );
   }

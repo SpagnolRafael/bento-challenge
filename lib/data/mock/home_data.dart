@@ -1,4 +1,4 @@
-class HomeBannerData {
+class HomeData {
   static String json = '''
 {
 "banners": [
@@ -38,12 +38,28 @@ class HomeBannerData {
 "recommendations": 
 [
   {
+    "id": "JKJHK23HTHTJH2TBJ2H",
     "name" : "Orange",
     "image" : "assets/images/orange.png",
     "value" : 1.99,
     "rating" : 4.7
   },
     {
+    "id": "JKJHK23HTHTJH2TBJ2H",
+    "name" : "Cabbage",
+    "image" : "assets/images/cabbage.png",
+    "value" : 2.46,
+    "rating" : 4.5
+  },
+    {
+    "id": "JKJHK23HTHTJH2TBJ2H",
+    "name" : "Orange",
+    "image" : "assets/images/orange.png",
+    "value" : 1.99,
+    "rating" : 4.7
+  },
+    {
+    "id": "JKJHK23HTHTJH2TBJ2H",
     "name" : "Cabbage",
     "image" : "assets/images/cabbage.png",
     "value" : 2.46,

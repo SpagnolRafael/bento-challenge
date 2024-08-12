@@ -13,7 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final ScrollController controller;
+  const HomeScreen({super.key, required this.controller});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -45,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           bool isLoading =
               state is HomeStateInitial || state is HomeStateLoading;
           return SingleChildScrollView(
+            controller: widget.controller,
             child: Column(
               children: [
                 Row(
@@ -86,8 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     isLoading: isLoading),
                 const SizedBox(height: 20),
                 HomeGrid(
-                    isLoading: isLoading,
-                    recommendations: data?.recommendations ?? []),
+                  isLoading: isLoading,
+                  recommendations: data?.recommendations ?? [],
+                ),
               ],
             ),
           );
