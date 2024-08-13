@@ -67,6 +67,7 @@ class _AppPagesState extends State<AppPages> {
   Widget build(BuildContext context) {
     return AppScaffold(
       body: PageView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => _pages[index],
         controller: _pageController,
       ),
@@ -86,8 +87,7 @@ class _AppPagesState extends State<AppPages> {
                 AppNavBarItem(icon: const Icon(Icons.home), title: 'Home'),
                 AppNavBarItem(
                     icon: const Icon(Ionicons.pricetag), title: 'Delas'),
-                AppNavBarItem(
-                    icon: const Icon(Ionicons.storefront), title: 'Shop'),
+                AppNavBarItem(icon: const Icon(Icons.store), title: 'Shop'),
                 AppNavBarItem(icon: const Icon(Ionicons.bag), title: 'Cart'),
                 AppNavBarItem(
                     icon: const Icon(Ionicons.person), title: 'Account'),

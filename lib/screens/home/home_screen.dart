@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 AppSkeleton(
                   isLoading: isLoading,
                   child: BannerCarrousel(banners: data?.banners ?? []),

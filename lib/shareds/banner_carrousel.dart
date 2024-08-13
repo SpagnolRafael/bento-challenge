@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class BannerCarrousel extends StatefulWidget {
   final List<BannerDto> banners;
-  const BannerCarrousel({super.key, required this.banners});
+  final double? height;
+  const BannerCarrousel({super.key, required this.banners, this.height});
 
   @override
   State<BannerCarrousel> createState() => _BannerCarrouselState();
@@ -58,7 +59,7 @@ class _BannerCarrouselState extends State<BannerCarrousel> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: 200,
+            height: widget.height ?? 200,
           ),
           const SizedBox(height: 10),
           const CarrouselIndex(lenght: 1, current: 0),
@@ -68,7 +69,7 @@ class _BannerCarrouselState extends State<BannerCarrousel> {
     return Column(
       children: [
         SizedBox(
-          height: 200,
+          height: widget.height ?? 160,
           child: PageView.builder(
             controller: controller,
             itemCount: widget.banners.length,
@@ -84,7 +85,7 @@ class _BannerCarrouselState extends State<BannerCarrousel> {
                   widget.banners[index].url,
                   width: double.infinity,
                   height: 200,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               );
             },

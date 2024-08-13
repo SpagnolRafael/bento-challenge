@@ -2,6 +2,7 @@ library molten_navigationbar_flutter;
 
 import 'dart:math';
 
+import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:bento_challenge/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -207,8 +208,8 @@ class _MoltenTabWrapper extends StatelessWidget {
     return IconTheme(
       data: IconThemeData(
         color: isSelected
-            ? tab.selectedColor ?? Colors.white
-            : tab.unselectedColor ?? Colors.grey,
+            ? tab.selectedColor ?? AppColors.primary
+            : tab.unselectedColor ?? AppColors.primary.withOpacity(.4),
       ),
       child: SizedBox(
         height: circleSize,

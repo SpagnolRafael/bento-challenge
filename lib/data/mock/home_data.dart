@@ -45,7 +45,7 @@ class HomeData {
     "rating" : 4.7
   },
     {
-    "id": "JKJHK23HTHTJH2TBJ2H",
+    "id": "SEF7S98EFSEG6SGSD8",
     "name" : "Cabbage",
     "image" : "assets/images/cabbage.png",
     "value" : 2.46,
@@ -59,7 +59,7 @@ class HomeData {
     "rating" : 4.7
   },
     {
-    "id": "JKJHK23HTHTJH2TBJ2H",
+    "id": "SEF7S98EFSEG6SGSD8",
     "name" : "Cabbage",
     "image" : "assets/images/cabbage.png",
     "value" : 2.46,

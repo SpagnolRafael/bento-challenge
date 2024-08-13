@@ -71,7 +71,7 @@ class _HomeGridState extends State<HomeGrid> {
                       ? null
                       : () => Navigator.pushNamed(
                           context, AppRoutes.productScreen,
-                          arguments: {"id": items[index].name}),
+                          arguments: {"id": items[index].id}),
                   child: Card(
                     color: AppColors.beige100,
                     shape: RoundedRectangleBorder(
