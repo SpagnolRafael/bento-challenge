@@ -3,6 +3,7 @@ import 'package:bento_challenge/models/dto/product_dto.dart';
 class ProductState {
   factory ProductState.initial() => ProductStateInitial();
   factory ProductState.loading() => ProductStateLoading();
+
   factory ProductState.success({required ProductDto product}) =>
       ProductStateSuccess(product: product);
   factory ProductState.error({required void Function() onTryAgain}) =>

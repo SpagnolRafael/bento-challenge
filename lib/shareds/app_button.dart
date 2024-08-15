@@ -39,8 +39,8 @@ class AppButton extends StatelessWidget {
         height: 44,
         color: isLoading ? AppColors.primary : color,
         text: text,
-        style:
-            AppTextStyle.roboto.copyWith(color: textColor ?? AppColors.white),
+        style: AppTextStyle.roboto.copyWith(
+            color: textColor ?? AppColors.white, fontWeight: FontWeight.bold),
         icon: icon,
         borderRadius: BorderRadius.circular(25),
       );
@@ -60,7 +60,7 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        child: InkWell(
+        child: GestureDetector(
           onTap: onTap,
           child: Container(
             height: height,

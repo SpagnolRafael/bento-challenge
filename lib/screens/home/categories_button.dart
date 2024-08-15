@@ -9,11 +9,13 @@ class CategoriesButton extends StatelessWidget {
   final String? selected;
   final bool isLoading;
   final List<CategoryDto> categories;
+  final void Function(CategoryDto category) onFilterChange;
   const CategoriesButton(
       {super.key,
       this.selected,
       required this.categories,
-      required this.isLoading});
+      required this.isLoading,
+      required this.onFilterChange});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class CategoriesButton extends StatelessWidget {
         children: [
           Text('Shop by category',
               style: AppTextStyle.poppins.copyWith(
-                  color: AppColors.blue900,
+                  color: AppColors.blue800,
                   fontWeight: FontWeight.w900,
                   fontSize: 16)),
           const SizedBox(height: 15),
@@ -43,6 +45,7 @@ class CategoriesButton extends StatelessWidget {
               separatorBuilder: (context, index) => const SizedBox(width: 10),
               itemBuilder: (context, index) {
                 return CategoryCard(
+                  onTap: () => onFilterChange(items[index]),
                   title: items[index].name,
                   icon: items[index].image,
                   isSelected: selected == items[index].name,

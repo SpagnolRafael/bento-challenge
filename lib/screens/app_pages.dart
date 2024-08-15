@@ -81,7 +81,7 @@ class _AppPagesState extends State<AppPages> {
             AppBottomNavBar(
               barHeight: 55,
               domeCircleSize: 50,
-              domeCircleColor: AppColors.blue900,
+              domeCircleColor: AppColors.blue800,
               domeHeight: 20,
               tabs: [
                 AppNavBarItem(icon: const Icon(Icons.home), title: 'Home'),

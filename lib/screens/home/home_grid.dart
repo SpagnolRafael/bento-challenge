@@ -1,16 +1,21 @@
 import 'package:bento_challenge/models/dto/recommendation_dto.dart';
+import 'package:bento_challenge/screens/home/home_grid_card.dart';
+import 'package:bento_challenge/shareds/app_error_widget.dart';
 import 'package:bento_challenge/shareds/skeleton.dart';
 import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:bento_challenge/utils/app_grid_delegate.dart';
-import 'package:bento_challenge/utils/app_routes.dart';
 import 'package:bento_challenge/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
 class HomeGrid extends StatefulWidget {
   final List<RecommendationDto> recommendations;
   final bool isLoading;
+  final void Function()? onError;
   const HomeGrid(
-      {super.key, required this.recommendations, required this.isLoading});
+      {super.key,
+      required this.recommendations,
+      required this.isLoading,
+      required this.onError});
 
   @override
   State<HomeGrid> createState() => _HomeGridState();
@@ -41,90 +46,46 @@ class _HomeGridState extends State<HomeGrid> {
                 child: Text(
                   'Today\'s Special',
                   style: AppTextStyle.poppins.copyWith(
-                    color: AppColors.blue900,
+                    color: AppColors.blue800,
                     fontWeight: FontWeight.w900,
                     fontSize: 16,
                   ),
                 ),
               ),
               Text('See all',
-                  style: AppTextStyle.roboto.copyWith(color: AppColors.primary))
+                  style: AppTextStyle.roboto.copyWith(
+                      color: AppColors.primary, fontWeight: FontWeight.bold))
             ],
           ),
           const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: FixedHeightSliverGridDelegate(
-                crossAxisCount: 2,
-                itemHeight: 220,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+          if (widget.onError != null)
+            Center(child: AppErrorWidget(onTryAgain: widget.onError))
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: FixedHeightSliverGridDelegate(
+                  crossAxisCount: 2,
+                  itemHeight: 188,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return HomeGridCard(
+                    isLoading: widget.isLoading,
+                    id: items[index].id,
+                    name: items[index].name,
+                    image: items[index].image,
+                    rating: items[index].rating,
+                    value: items[index].value,
+                  );
+                },
               ),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: widget.isLoading
-                      ? null
-                      : () => Navigator.pushNamed(
-                          context, AppRoutes.productScreen,
-                          arguments: {"id": items[index].id}),
-                  child: Card(
-                    color: AppColors.beige100,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Stack(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            if (items[index].image != null)
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Image.asset(
-                                    items[index].image!,
-                                    width: double.infinity,
-                                  ),
-                                ),
-                              ),
-                            Text(widget.isLoading
-                                ? '******* \$**.**'
-                                : '${items[index].name} \$${items[index].value}'),
-                          ],
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                items[index].rating.toString(),
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.star,
-                                color: Colors.orange,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
             ),
-          ),
         ],
       ),
     );

@@ -1,5 +1,40 @@
 class HomeData {
-  static String json = '''
+  static String json({String? category}) {
+    if (category != null && category.isNotEmpty) {
+      return '''
+[
+  {
+    "id": "JKJHK23HTHTJH2TBJ2H",
+    "name" : "Orange",
+    "image" : "assets/images/orange.png",
+    "value" : 1.99,
+    "rating" : 4.7
+  },
+    {
+    "id": "SEF7S98EFSEG6SGSD8",
+    "name" : "Cabbage",
+    "image" : "assets/images/cabbage.png",
+    "value" : 2.46,
+    "rating" : 4.5
+  },
+    {
+    "id": "JKJHK23HTHTJH2TBJ2H",
+    "name" : "Orange",
+    "image" : "assets/images/orange.png",
+    "value" : 1.99,
+    "rating" : 4.7
+  },
+    {
+    "id": "SEF7S98EFSEG6SGSD8",
+    "name" : "Cabbage",
+    "image" : "assets/images/cabbage.png",
+    "value" : 2.46,
+    "rating" : 4.5
+  }
+]
+''';
+    } else {
+      return '''
 {
 "banners": [
   {
@@ -68,4 +103,6 @@ class HomeData {
 ]
 }
 ''';
+    }
+  }
 }

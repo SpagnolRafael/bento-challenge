@@ -7,6 +7,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository _repository;
   HomeBloc(this._repository) : super(HomeState.initial()) {
     on<LoadHomeDataEvent>((event, emit) => _loadHomeData(event, emit));
+    on<UpdateRecommendationsHomeEvent>(
+        (event, emit) => _updateGridRecommendations(event, emit));
   }
 
   HomeEvent? previousEvent;
@@ -20,6 +22,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void retry() {
     if (previousEvent != null) {
       add(previousEvent!);
+    }
+  }
+
+  Future<void> _updateGridRecommendations(
+      UpdateRecommendationsHomeEvent event, Emitter<HomeState> emit) async {
+    try {
+      emit(HomeState.gridLoading());
+      final recommendations = await _repository.getHomeRecommendationsData(
+          category: event.category);
+      emit(HomeState.gridSuccess(recommendations: recommendations));
+    } catch (error) {
+      emit(HomeState.gridError(onTryAgain: retry));
     }
   }
 

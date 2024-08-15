@@ -1,15 +1,19 @@
 import 'package:bento_challenge/models/dto/banner_dto.dart';
 import 'package:bento_challenge/models/dto/product_dto.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite_icon.dart';
 import 'package:bento_challenge/screens/product/product_bloc.dart';
 import 'package:bento_challenge/screens/product/product_event.dart';
 import 'package:bento_challenge/screens/product/product_state.dart';
 import 'package:bento_challenge/screens/product/seal_component.dart';
 import 'package:bento_challenge/shareds/app_button.dart';
+import 'package:bento_challenge/shareds/app_error_widget.dart';
 import 'package:bento_challenge/shareds/app_scaffold.dart';
+import 'package:bento_challenge/shareds/app_snackbar.dart';
 import 'package:bento_challenge/shareds/banner_carrousel.dart';
 import 'package:bento_challenge/shareds/skeleton.dart';
 import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:bento_challenge/utils/app_formatters.dart';
+import 'package:bento_challenge/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -25,6 +29,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   final bloc = GetIt.I.get<ProductBloc>();
   ProductDto? _product;
+  void Function()? _onTryAgain;
 
   @override
   void initState() {
@@ -34,17 +39,28 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductBloc, ProductState>(
-      bloc: bloc,
-      listener: (context, state) {
-        if (state is ProductStateSuccess) {
-          _product = state.product;
-        }
-      },
-      builder: (context, state) {
-        bool isLoading = state is ProductStateLoading;
-        return AppScaffold(
-          body: Column(
+    return AppScaffold(
+      body: BlocConsumer<ProductBloc, ProductState>(
+        bloc: bloc,
+        listener: (context, state) {
+          if (state is ProductStateSuccess) {
+            _product = state.product;
+          }
+
+          if (state is ProductStateError) {
+            _onTryAgain = state.onTryAgain;
+            AppSnackbar.show(
+                context: context,
+                type: SnackType.error,
+                content: const Text('An error occurred, try again'));
+          }
+        },
+        builder: (context, state) {
+          bool isLoading = state is ProductStateLoading;
+          if (state is ProductStateError) {
+            return Center(child: AppErrorWidget(onTryAgain: _onTryAgain));
+          }
+          return Column(
             children: [
               Expanded(
                 child: Padding(
@@ -67,10 +83,14 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                             AppSkeleton(
                               isLoading: isLoading,
-                              child: AppButton.action(
-                                icon:
-                                    const Icon(Icons.favorite_border, size: 16),
-                                onTap: () => Navigator.pop(context),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.grey50,
+                                ),
+                                child: AnimatedFavoriteIcon(
+                                    productId: _product?.id),
                               ),
                             ),
                           ],
@@ -97,6 +117,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                         : _product?.name ?? '-',
                                     style: const TextStyle(
                                         fontSize: 22,
+                                        color: AppColors.blue800,
                                         fontWeight: FontWeight.bold)),
                               ),
                               const SizedBox(width: 12),
@@ -127,13 +148,15 @@ class _ProductScreenState extends State<ProductScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 10),
                         AppSkeleton(
                           isLoading: isLoading,
                           child: Text(
-                            'Shop: ${isLoading ? '******' : (_product?.shop ?? '-')}',
-                            style: const TextStyle(fontWeight: FontWeight.w300),
-                          ),
+                              'Shop: ${isLoading ? '******' : (_product?.shop ?? '-')}',
+                              style: AppTextStyle.roboto.copyWith(
+                                  color: AppColors.blue800.withOpacity(0.8),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12)),
                         ),
                         const SizedBox(height: 16),
                         SealComponent(
@@ -144,7 +167,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           isLoading: isLoading,
                           child: const Text('Details',
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.blue800,
+                              )),
                         ),
                         const SizedBox(height: 8),
                         AppSkeleton(
@@ -153,7 +179,9 @@ class _ProductScreenState extends State<ProductScreen> {
                             isLoading
                                 ? '******************************************************************************************************************************************************************************'
                                 : _product?.description ?? '-',
-                            style: const TextStyle(fontWeight: FontWeight.w300),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.blue800),
                           ),
                         ),
                         const SizedBox(height: 32),
@@ -172,13 +200,16 @@ class _ProductScreenState extends State<ProductScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text('Price',
-                              style: TextStyle(fontWeight: FontWeight.w300)),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.grey100)),
                           Row(
                             children: [
                               Text(
                                   '\$${AppFormatters.money(((_product?.value ?? 0) - (_product?.discount ?? 0)).toString())}',
                                   style: const TextStyle(
                                       fontSize: 20,
+                                      color: AppColors.blue800,
                                       fontWeight: FontWeight.bold)),
                               const SizedBox(width: 8),
                               Text(
@@ -197,7 +228,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Expanded(
                         child: AppButton.primary(
                       text: 'Add to Cart',
-                      textColor: AppColors.blue900,
+                      textColor: AppColors.blue800,
                       onTap: () {},
                     ))
                   ],
@@ -205,9 +236,9 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               const SizedBox(height: 15),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

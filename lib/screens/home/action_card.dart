@@ -25,7 +25,7 @@ class ActionCard extends StatelessWidget {
               Text(title,
                   style: AppTextStyle.poppins.copyWith(
                       fontSize: 18,
-                      color: AppColors.blue900,
+                      color: AppColors.blue800,
                       fontWeight: FontWeight.w900)),
             ],
           ),

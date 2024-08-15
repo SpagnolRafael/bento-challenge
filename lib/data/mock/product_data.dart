@@ -34,7 +34,7 @@ class ProductData {
     } else {
       return '''
 {
-  "id": "JKJHK23HTHTJH2TBJ2H",
+  "id": "SEF7S98EFSEG6SGSD8",
   "name": "Cabbage",
   "shop": "Alisha Mart",
   "images": [
@@ -65,11 +65,3 @@ class ProductData {
     }
   }
 }
-
-  // final String id;
-  // final List<String>? images;
-  // final String name;
-  // final num value;
-  // final num? discount;
-  // final List<CategoryDto> category;
-  // final String? description;

@@ -19,12 +19,21 @@ dependencies:
   get_it: ^7.7.0
   flutter_bloc: ^8.1.6
   ionicons: ^0.2.2
+  shared_preferences: ^2.3.1
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^3.0.0
+
+flutter_launcher_icons:
+  android: true
+  min_sdk_android: 21
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icons/app_icon.jpg"
 
 flutter:
 
@@ -34,14 +43,3 @@ flutter:
     - assets/icons/
     - assets/images/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700

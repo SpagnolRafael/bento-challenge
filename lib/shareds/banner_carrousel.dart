@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bento_challenge/models/dto/banner_dto.dart';
+import 'package:bento_challenge/shareds/app_image_viewer.dart';
 import 'package:bento_challenge/shareds/carrousel_index.dart';
 import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -81,11 +82,16 @@ class _BannerCarrouselState extends State<BannerCarrousel> {
             itemBuilder: (context, index) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  widget.banners[index].url,
-                  width: double.infinity,
-                  height: 200,
-                  fit: BoxFit.cover,
+                child: InkWell(
+                  onTap: () =>
+                      AppImageViewer(imageUrl: widget.banners[index].url)
+                          .push(context),
+                  child: Image.asset(
+                    widget.banners[index].url,
+                    width: double.infinity,
+                    height: 200,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               );
             },

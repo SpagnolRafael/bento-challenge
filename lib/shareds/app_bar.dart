@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
                 style: AppTextStyle.poppins.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.blue900,
+                  color: AppColors.blue800,
                 ),
               ),
               Row(

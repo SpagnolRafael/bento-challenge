@@ -139,7 +139,9 @@ class AppBottomNavBar extends StatelessWidget {
                     ),
                     if (!isSelected && title != null)
                       Text(title,
-                          style: AppTextStyle.roboto.copyWith(fontSize: 10))
+                          style: AppTextStyle.roboto.copyWith(
+                              fontSize: 10,
+                              color: AppColors.primary.withOpacity(.6)))
                     else
                       const SizedBox(height: 12)
                   ],
@@ -209,7 +211,7 @@ class _MoltenTabWrapper extends StatelessWidget {
       data: IconThemeData(
         color: isSelected
             ? tab.selectedColor ?? AppColors.primary
-            : tab.unselectedColor ?? AppColors.primary.withOpacity(.4),
+            : tab.unselectedColor ?? AppColors.primary.withOpacity(.6),
       ),
       child: SizedBox(
         height: circleSize,
