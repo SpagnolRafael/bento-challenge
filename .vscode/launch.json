@@ -5,21 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "bento_challenge",
+            "name": "Staging Build",
             "request": "launch",
             "type": "dart"
         },
-        {
-            "name": "bento_challenge (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "bento_challenge (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
+
     ]
 }

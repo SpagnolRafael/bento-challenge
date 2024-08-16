@@ -130,7 +130,7 @@ class AppTutorial {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'This carousel has a timer that automatically changes the images so the user can see the most important things about the app, like promotions. If the user wants to see the image in more detail, they can tap on the image, and it will be displayed until the user closes the screen by tapping the button at the top.',
+                      'This carousel has a timer that automatically changes the images so the user can see the most important things about the app, like promotions. If the user wants to see the image in more detail, they can tap on the image, and it will be displayed until the user closes the visualization screen by tapping the button at the top.',
                       textAlign: TextAlign.justify,
                       style: AppTextStyle.roboto.copyWith(
                           fontSize: 12,
