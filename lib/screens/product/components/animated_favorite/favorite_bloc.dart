@@ -1,6 +1,6 @@
 import 'package:bento_challenge/data/repository/product_repository.dart';
-import 'package:bento_challenge/screens/product/components/favorite_state.dart';
-import 'package:bento_challenge/screens/product/favorite_event.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_event.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {

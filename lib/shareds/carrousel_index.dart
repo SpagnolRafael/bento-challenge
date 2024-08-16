@@ -54,7 +54,7 @@ class _CarrouselIndexState extends State<CarrouselIndex> {
                     : BorderRadius.circular(100),
                 color: isCurrent
                     ? AppColors.primary
-                    : AppColors.grey200.withOpacity(.1),
+                    : AppColors.grey800.withOpacity(.1),
               ),
             );
           },

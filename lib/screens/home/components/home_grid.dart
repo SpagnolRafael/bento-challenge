@@ -1,5 +1,5 @@
 import 'package:bento_challenge/models/dto/recommendation_dto.dart';
-import 'package:bento_challenge/screens/home/home_grid_card.dart';
+import 'package:bento_challenge/screens/home/components/home_grid_card.dart';
 import 'package:bento_challenge/shareds/app_error_widget.dart';
 import 'package:bento_challenge/shareds/skeleton.dart';
 import 'package:bento_challenge/utils/app_colors.dart';

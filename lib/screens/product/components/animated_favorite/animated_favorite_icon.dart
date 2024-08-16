@@ -1,6 +1,6 @@
-import 'package:bento_challenge/screens/product/components/favorite_bloc.dart';
-import 'package:bento_challenge/screens/product/components/favorite_state.dart';
-import 'package:bento_challenge/screens/product/favorite_event.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_bloc.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_event.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_state.dart';
 import 'package:bento_challenge/shareds/app_snackbar.dart';
 import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:flutter/material.dart';

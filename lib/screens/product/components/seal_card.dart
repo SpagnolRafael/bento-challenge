@@ -1,3 +1,4 @@
+import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SealCard extends StatelessWidget {
@@ -14,7 +15,7 @@ class SealCard extends StatelessWidget {
           height: 45,
           width: 45,
           decoration: const BoxDecoration(
-              color: Color(0xffC7F4C5), shape: BoxShape.circle),
+              color: AppColors.primary100, shape: BoxShape.circle),
           child: Center(child: Image.asset(icon)),
         ),
         const SizedBox(height: 6),

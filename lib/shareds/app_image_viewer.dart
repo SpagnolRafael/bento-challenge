@@ -47,7 +47,7 @@ class _AppImageViewerState extends State<AppImageViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.grey200,
+      backgroundColor: AppColors.grey800,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -75,7 +75,7 @@ class _AppImageViewerState extends State<AppImageViewer> {
             child: image ??
                 Container(
                     width: double.infinity,
-                    color: AppColors.grey200,
+                    color: AppColors.grey800,
                     height: 200,
                     child: const Icon(Icons.error))),
       ),

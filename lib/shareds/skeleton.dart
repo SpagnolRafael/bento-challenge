@@ -1,3 +1,4 @@
+import 'package:bento_challenge/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -21,7 +22,7 @@ class AppSkeleton extends StatelessWidget {
           ? Shimmer.fromColors(
               key: const ValueKey('shimmer'),
               baseColor: Colors.grey.shade300,
-              highlightColor: Colors.white,
+              highlightColor: AppColors.white,
               child: child,
             )
           : child,

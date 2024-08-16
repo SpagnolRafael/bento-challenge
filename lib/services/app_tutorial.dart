@@ -159,7 +159,7 @@ class AppTutorial {
                       'assets/images/reload.png',
                       width: 200,
                       height: 200,
-                      color: AppColors.grey200,
+                      color: AppColors.grey800,
                     ),
                     Column(
                       children: [
@@ -218,7 +218,7 @@ class AppTutorial {
                       child: RotatedBox(
                         quarterTurns: 3,
                         child: Image.asset('assets/images/hand-click.png',
-                            color: AppColors.grey100, width: 150, height: 250),
+                            color: AppColors.grey350, width: 150, height: 250),
                       ),
                     ),
                   ],

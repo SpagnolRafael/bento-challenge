@@ -28,11 +28,11 @@ class CustomAppBar extends StatelessWidget {
                       style: AppTextStyle.roboto.copyWith(
                         fontSize: 12,
                         fontWeight: FontWeight.w200,
-                        color: AppColors.grey200,
+                        color: AppColors.grey800,
                       )),
                   const SizedBox(width: 5),
                   const Icon(Icons.keyboard_arrow_down_rounded,
-                      color: AppColors.grey200, size: 18),
+                      color: AppColors.grey800, size: 18),
                 ],
               )
             ],

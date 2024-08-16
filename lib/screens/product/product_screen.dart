@@ -1,10 +1,10 @@
 import 'package:bento_challenge/models/dto/banner_dto.dart';
 import 'package:bento_challenge/models/dto/product_dto.dart';
-import 'package:bento_challenge/screens/product/components/animated_favorite_icon.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/animated_favorite_icon.dart';
+import 'package:bento_challenge/screens/product/components/seal_component.dart';
 import 'package:bento_challenge/screens/product/product_bloc.dart';
 import 'package:bento_challenge/screens/product/product_event.dart';
 import 'package:bento_challenge/screens/product/product_state.dart';
-import 'package:bento_challenge/screens/product/seal_component.dart';
 import 'package:bento_challenge/services/app_tutorial.dart';
 import 'package:bento_challenge/shareds/app_button.dart';
 import 'package:bento_challenge/shareds/app_error_widget.dart';
@@ -130,13 +130,13 @@ class _ProductScreenState extends State<ProductScreen> {
                                     horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Colors.grey[200]!, width: .6),
+                                      color: AppColors.grey200, width: .6),
                                   borderRadius: BorderRadius.circular(22),
                                 ),
                                 child: Row(
                                   children: [
                                     Icon(Icons.star,
-                                        size: 20, color: Colors.yellow[700]),
+                                        size: 20, color: AppColors.yellow700),
                                     const SizedBox(width: 4),
                                     Text(
                                         isLoading
@@ -193,7 +193,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                 ),
-                Divider(height: 32, color: Colors.grey[200]),
+                Divider(height: 32, color: AppColors.grey200),
                 AppSkeleton(
                   isLoading: isLoading,
                   child: Row(
@@ -205,7 +205,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             const Text('Price',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.grey100)),
+                                    color: AppColors.grey350)),
                             Row(
                               children: [
                                 Text(
@@ -220,7 +220,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w300,
-                                        color: Colors.grey[400],
+                                        color: AppColors.grey400,
                                         decoration:
                                             TextDecoration.lineThrough)),
                               ],

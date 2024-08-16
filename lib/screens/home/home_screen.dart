@@ -1,10 +1,10 @@
 import 'package:bento_challenge/models/dto/home_dto.dart';
 import 'package:bento_challenge/models/dto/recommendation_dto.dart';
-import 'package:bento_challenge/screens/home/action_card.dart';
-import 'package:bento_challenge/screens/home/categories_button.dart';
+import 'package:bento_challenge/screens/home/components/action_card.dart';
+import 'package:bento_challenge/screens/home/components/categories_button.dart';
+import 'package:bento_challenge/screens/home/components/home_grid.dart';
 import 'package:bento_challenge/screens/home/home_bloc.dart';
 import 'package:bento_challenge/screens/home/home_event.dart';
-import 'package:bento_challenge/screens/home/home_grid.dart';
 import 'package:bento_challenge/screens/home/home_state.dart';
 import 'package:bento_challenge/services/app_tutorial.dart';
 import 'package:bento_challenge/shareds/app_error_widget.dart';

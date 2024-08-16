@@ -26,7 +26,7 @@ class CategoryCard extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.grey40 : AppColors.grey50,
+              color: isSelected ? AppColors.primary10 : AppColors.grey50,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(icon),
@@ -35,7 +35,7 @@ class CategoryCard extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-              color: Color(0xff001a4b),
+              color: AppColors.blue1000,
               fontWeight: FontWeight.w700,
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:bento_challenge/data/repository/home_repository.dart';
 import 'package:bento_challenge/data/repository/product_repository.dart';
 import 'package:bento_challenge/screens/home/home_bloc.dart';
-import 'package:bento_challenge/screens/product/components/favorite_bloc.dart';
+import 'package:bento_challenge/screens/product/components/animated_favorite/favorite_bloc.dart';
 import 'package:bento_challenge/screens/product/product_bloc.dart';
 import 'package:bento_challenge/services/shared_preferences_service.dart';
 import 'package:get_it/get_it.dart';
