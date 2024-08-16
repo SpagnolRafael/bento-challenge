@@ -6,6 +6,7 @@ import 'package:bento_challenge/screens/home/home_bloc.dart';
 import 'package:bento_challenge/screens/home/home_event.dart';
 import 'package:bento_challenge/screens/home/home_grid.dart';
 import 'package:bento_challenge/screens/home/home_state.dart';
+import 'package:bento_challenge/services/app_tutorial.dart';
 import 'package:bento_challenge/shareds/app_error_widget.dart';
 import 'package:bento_challenge/shareds/app_scaffold.dart';
 import 'package:bento_challenge/shareds/app_snackbar.dart';
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             data = state.data;
             _recommendations = data?.recommendations ?? [];
             _selectedCategory = '';
+            AppTutorial.home(context);
           }
           if (state is HomeStateGridError) {
             _onTryAgain = state.onTryAgain;
@@ -85,10 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: AppSkeleton(
                         isLoading: state is HomeStateInitial ||
                             state is HomeStateLoading,
-                        child: ActionCard(
-                          title: 'ORDER\nAGAIN',
-                          icon: Image.asset('assets/images/food-bag.png',
-                              height: 60),
+                        child: GestureDetector(
+                          onTap: () => AppTutorial.home(context),
+                          child: ActionCard(
+                            title: 'ORDER\nAGAIN',
+                            icon: Image.asset('assets/images/food-bag.png',
+                                height: 60),
+                          ),
                         ),
                       ),
                     ),
@@ -109,10 +114,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 10),
                 AppSkeleton(
                   isLoading: isLoading,
-                  child: BannerCarrousel(banners: data?.banners ?? []),
+                  key: AppTutorial.gKeyHomeBanner,
+                  child: BannerCarrousel(
+                    banners: data?.banners ?? [],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 CategoriesButton(
+                    key: AppTutorial.gKeyHomeCategories,
                     onFilterChange: (category) {
                       _selectedCategory = category.name;
                       bloc.add(UpdateRecommendationsHomeEvent(
@@ -123,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     isLoading: isLoading),
                 const SizedBox(height: 20),
                 HomeGrid(
+                  key: AppTutorial.gKeyHomeProduct,
                   onError: isLoading ? null : _onTryAgain,
                   isLoading: isLoading || state is HomeStateGridLoading,
                   recommendations: _recommendations,

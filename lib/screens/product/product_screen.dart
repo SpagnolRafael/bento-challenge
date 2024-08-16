@@ -5,6 +5,7 @@ import 'package:bento_challenge/screens/product/product_bloc.dart';
 import 'package:bento_challenge/screens/product/product_event.dart';
 import 'package:bento_challenge/screens/product/product_state.dart';
 import 'package:bento_challenge/screens/product/seal_component.dart';
+import 'package:bento_challenge/services/app_tutorial.dart';
 import 'package:bento_challenge/shareds/app_button.dart';
 import 'package:bento_challenge/shareds/app_error_widget.dart';
 import 'package:bento_challenge/shareds/app_scaffold.dart';
@@ -45,6 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
         listener: (context, state) {
           if (state is ProductStateSuccess) {
             _product = state.product;
+            AppTutorial.product(context);
           }
 
           if (state is ProductStateError) {
@@ -60,11 +62,11 @@ class _ProductScreenState extends State<ProductScreen> {
           if (state is ProductStateError) {
             return Center(child: AppErrorWidget(onTryAgain: _onTryAgain));
           }
-          return Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              children: [
+                Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,6 +84,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                             ),
                             AppSkeleton(
+                              key: AppTutorial.gKeyProductFavorite,
                               isLoading: isLoading,
                               child: Container(
                                 padding: const EdgeInsets.all(8),
@@ -97,6 +100,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         const SizedBox(height: 12),
                         AppSkeleton(
+                            key: AppTutorial.gKeyProductBanner,
                             isLoading: isLoading,
                             child: BannerCarrousel(
                               height: 280,
@@ -189,53 +193,54 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                 ),
-              ),
-              Divider(height: 32, color: Colors.grey[200]),
-              AppSkeleton(
-                isLoading: isLoading,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('Price',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.grey100)),
-                          Row(
-                            children: [
-                              Text(
-                                  '\$${AppFormatters.money(((_product?.value ?? 0) - (_product?.discount ?? 0)).toString())}',
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      color: AppColors.blue800,
-                                      fontWeight: FontWeight.bold)),
-                              const SizedBox(width: 8),
-                              Text(
-                                  '\$${AppFormatters.money((_product?.value ?? 0).toString())}',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.grey[400],
-                                      decoration: TextDecoration.lineThrough)),
-                            ],
-                          ),
-                        ],
+                Divider(height: 32, color: Colors.grey[200]),
+                AppSkeleton(
+                  isLoading: isLoading,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Price',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.grey100)),
+                            Row(
+                              children: [
+                                Text(
+                                    '\$${AppFormatters.money(((_product?.value ?? 0) - (_product?.discount ?? 0)).toString())}',
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        color: AppColors.blue800,
+                                        fontWeight: FontWeight.bold)),
+                                const SizedBox(width: 8),
+                                Text(
+                                    '\$${AppFormatters.money((_product?.value ?? 0).toString())}',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.grey[400],
+                                        decoration:
+                                            TextDecoration.lineThrough)),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 32),
-                    Expanded(
-                        child: AppButton.primary(
-                      text: 'Add to Cart',
-                      textColor: AppColors.blue800,
-                      onTap: () {},
-                    ))
-                  ],
+                      const SizedBox(width: 32),
+                      Expanded(
+                          child: AppButton.primary(
+                        text: 'Add to Cart',
+                        textColor: AppColors.blue800,
+                        onTap: () => AppTutorial.product(context),
+                      ))
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 15),
-            ],
+                const SizedBox(height: 15),
+              ],
+            ),
           );
         },
       ),

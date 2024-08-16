@@ -60,7 +60,7 @@ class _BannerCarrouselState extends State<BannerCarrousel> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: widget.height ?? 200,
+            height: widget.height ?? 160,
           ),
           const SizedBox(height: 10),
           const CarrouselIndex(lenght: 1, current: 0),

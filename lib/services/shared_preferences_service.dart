@@ -4,6 +4,8 @@ abstract class Storage {
   get({required String key, required Type type});
   Future post({required String key, required dynamic data});
   Future remove({required String key});
+  bool watchedTutorial(String key);
+  setWatchedTutorial({required String key, required bool watched});
 }
 
 class Preferences implements Storage {
@@ -45,5 +47,16 @@ class Preferences implements Storage {
   @override
   Future remove({required String key}) async {
     return await prefs.remove(key);
+  }
+
+  @override
+  bool watchedTutorial(String key) {
+    final watched = prefs.getBool(key);
+    return watched ?? false;
+  }
+
+  @override
+  void setWatchedTutorial({required String key, required bool watched}) {
+    prefs.setBool(key, watched);
   }
 }

@@ -3,6 +3,7 @@ import 'package:bento_challenge/screens/cart/cart_screen.dart';
 import 'package:bento_challenge/screens/delas/delas_screen.dart';
 import 'package:bento_challenge/screens/home/home_screen.dart';
 import 'package:bento_challenge/screens/shop/shop_screen.dart';
+import 'package:bento_challenge/services/app_tutorial.dart';
 import 'package:bento_challenge/shareds/app_bottom_nav_bar.dart';
 import 'package:bento_challenge/shareds/app_scaffold.dart';
 import 'package:bento_challenge/utils/app_colors.dart';
@@ -72,6 +73,7 @@ class _AppPagesState extends State<AppPages> {
         controller: _pageController,
       ),
       bottomNavigationBar: AnimatedPositioned(
+        key: AppTutorial.gKeyNavBar,
         duration: const Duration(milliseconds: 300),
         bottom: _isVisible ? 0 : -150,
         left: 0,
